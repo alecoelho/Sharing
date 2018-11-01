@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "727936331391",
+    "firebase_url": "https://sharing-7d9b5.firebaseio.com",
+    "project_id": "sharing-7d9b5",
+    "storage_bucket": "sharing-7d9b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727936331391:android:3bcb3251a108c2bf",
+        "android_client_info": {
+          "package_name": "com.angularionic.sharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727936331391-n6905q9s5sg5n12dp3ui3cknuqgngevh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtMlP0S3VbcoqYHASDuDEGt8CsY1K_Tts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
