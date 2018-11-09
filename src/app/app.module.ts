@@ -17,10 +17,13 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule} from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
    declarations: [
       AppComponent,
+      CategoryComponent,
    ],
    entryComponents: [],
    imports: [
@@ -31,7 +34,9 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
       AngularFireStorageModule,
       AngularFireAuthModule,
       AngularFireFunctionsModule,
-      AngularFireMessagingModule
+      AngularFireMessagingModule,
+      FormsModule,
+      ReactiveFormsModule
    ],
    providers: [
       Firebase,
