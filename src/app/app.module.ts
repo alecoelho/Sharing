@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { Firebase } from '@ionic-native/firebase/ngx'
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -17,25 +17,35 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule} from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoryComponent } from './category/category.component';
+
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule,
-    AngularFireAuthModule,
-    AngularFireFunctionsModule,
-    AngularFireMessagingModule
-  ],
-  providers: [
-    Firebase,
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      CategoryComponent,
+   ],
+   entryComponents: [],
+   imports: [
+      BrowserModule,
+      IonicModule.forRoot(),
+      AppRoutingModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireStorageModule,
+      AngularFireAuthModule,
+      AngularFireFunctionsModule,
+      AngularFireMessagingModule,
+      FormsModule,
+      ReactiveFormsModule
+   ],
+   providers: [
+      Firebase,
+      StatusBar,
+      SplashScreen,
+      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule {}
