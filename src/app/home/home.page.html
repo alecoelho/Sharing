@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <ng-container *ngIf="authService.user$ | async as user">
+      <h1>Hello {{ user.displayName }}</h1>
+      <ion-button color="secondary"  (click)="signOut()">Sign Out</ion-button>
+  </ng-container>
+  
 </ion-content>
