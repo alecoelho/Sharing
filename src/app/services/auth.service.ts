@@ -40,10 +40,8 @@ export class AuthService {
     if(this.platform.is('cordova')){
       await this.googlePlus.logout();
     }
-    else{
-      await this.afAuth.auth.signOut(); 
-    }    
-    return this.router.navigate(['/']);
+    
+    return await this.afAuth.auth.signOut(); 
   }
 
   
