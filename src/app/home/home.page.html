@@ -1,18 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-toolbar>  
+    <ion-menu-button *ngIf="authService.user$ | async as user; else login">
+    </ion-menu-button> 
+    <ng-template #login>
+      <ion-buttons slot="end">
+          <ion-button (click)="signInWithGoogle()">
+            <span style="margin-right: 5px">Sign In</span>
+            <ion-icon src="assets/icon/google_logo.svg" ></ion-icon>             
+          </ion-button>
+      </ion-buttons>
+    </ng-template>     
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  <ng-container *ngIf="authService.user$ | async as user">
-      <h1>Hello {{ user.displayName }}</h1>
-      <ion-button color="secondary"  (click)="signOut()">Sign Out</ion-button>
-  </ng-container>
-  
+    <ion-searchbar></ion-searchbar>
+    <ion-card>
+        <ion-img src="/assets/images/catgories/books.jpg"></ion-img>
+        <ion-card-header>
+            <ion-card-title>Books</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>All types of books</p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-img src="/assets/images/catgories/tools.jpeg"></ion-img>
+        <ion-card-header>
+            <ion-card-title>Tools</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>The content for this card</p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-img src="/assets/images/catgories/home_outdoor.jpg"></ion-img>
+        <ion-card-header>
+            <ion-card-title>Home - Outdoor</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>The content for this card</p>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -8,12 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  constructor(private authService: AuthService) {}
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  async signOut(){
-    this.authService.singOut();
-    this.router.navigate(['/']);
+  signInWithGoogle(){
+    this.authService.googleLogin();
   }
-
 }

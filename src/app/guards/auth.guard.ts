@@ -15,19 +15,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Promise<boolean>  {
 
     const uid = await this.auth.uid();
-    const isLoggedIn = !!uid;
-
-    if(!isLoggedIn){
-      const alert = await this.alertCtrl.create({
-        header: 'Blocked',
-        subHeader: 'Users only',
-        message: 'You do not have permisison',
-        buttons: ['OK']
-      }); 
-
-      alert.present();
-    }
-
-    return isLoggedIn;
+    return !!uid;
   }
 }

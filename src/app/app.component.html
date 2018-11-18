@@ -7,17 +7,17 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item routerLink="/home" (click)="sidemenu.close()">
-          <ion-label>Home</ion-label>
+        <ion-item routerLink="/profile" (click)="sidemenu.close()">
+          <ion-label>Profile</ion-label>
         </ion-item>
-        <ion-item routerLink="/rent" (click)="sidemenu.close()">
-          <ion-label>Rent</ion-label>
+        <ion-item routerLink="/my-trades" (click)="sidemenu.close()">
+          <ion-label>My Trades</ion-label>
         </ion-item>
-        <ion-item routerLink="/products" (click)="sidemenu.close()">
-          <ion-label>Products</ion-label>
+        <ion-item routerLink="/history" (click)="sidemenu.close()">
+          <ion-label>History</ion-label>
         </ion-item>
-        <ion-item routerLink="/category" (click)="sidemenu.close()">
-          <ion-label>Categories</ion-label>
+        <ion-item (click)="signOut(); sidemenu.close()">
+          <ion-label>Sing Out</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
