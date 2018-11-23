@@ -24,6 +24,8 @@ import { DbService } from './services/db.service';
 
 import { environment } from '../environments/environment';
 
+import { Facebook } from '@ionic-native/facebook/ngx';
+
 @NgModule({
    declarations: [AppComponent],
    entryComponents: [],
@@ -45,6 +47,7 @@ import { environment } from '../environments/environment';
       StatusBar,
       SplashScreen,
       GooglePlus,
+      Facebook,
       AngularFirestore,
       { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ],

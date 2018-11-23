@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class HomePage {
   constructor(private authService: AuthService) {}
 
-  signInWithGoogle(){
+  signInWithGoogle() {
     this.authService.googleLogin();
+  }
+
+  signInWithFacebook() {
+    this.authService.facebookLogin();
   }
 }

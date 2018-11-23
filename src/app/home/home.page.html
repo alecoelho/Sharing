@@ -4,11 +4,14 @@
     </ion-menu-button> 
     <ng-template #login>
       <ion-buttons slot="end">
-          <ion-button (click)="signInWithGoogle()">
-            <span style="margin-right: 5px">Sign In</span>
-            <ion-icon src="assets/icon/google_logo.svg" ></ion-icon>             
-          </ion-button>
-      </ion-buttons>
+        <span style="margin-right: 5px">Sign In</span>
+        <ion-button (click)="signInWithGoogle()">
+        <ion-icon src="assets/icon/google_logo.svg"></ion-icon>
+        </ion-button>
+        <ion-button (click)="signInWithFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon>             
+        </ion-button>
+        </ion-buttons>
     </ng-template>     
   </ion-toolbar>
 </ion-header>

@@ -7,12 +7,13 @@ import { Observable, of } from 'rxjs';
 import { switchMap, take, map } from 'rxjs/operators';
 
 import { Storage } from '@ionic/storage';
-import { Platform, LoadingController } from '@ionic/angular';
+import { Platform, LoadingController, ToastController } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 import { DbService } from './db.service';
 
 import { AppUser } from '../models/app-user';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -27,49 +28,60 @@ export class AuthService {
     private storage: Storage,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private googlePlus: GooglePlus
-  ) { 
+    private googlePlus: GooglePlus,
+    private fb: Facebook,
+    public toastController: ToastController
+  ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => (user ? db.doc$(`users/${user.uid}`) : of(null)))
     );
 
     this.handleRedirect();
-  }  
-
-  async singOut(){
-    if(this.platform.is('cordova')){
-      await this.googlePlus.logout();
-    }
-    
-    return await this.afAuth.auth.signOut(); 
   }
 
-  
+  async singOut() {
+    if (this.platform.is('cordova')) {
+      await this.googlePlus.logout();
+    }
 
-  async googleLogin(){
-    try{
-      let user;      
+    return await this.afAuth.auth.signOut();
+  }
 
-      if(this.platform.is('cordova')){
+  async facebookLogin() {
+    this.fb.login(['public_profile', 'email'])
+    .then((res: FacebookLoginResponse) => async() => {
+      const user = await this.afAuth.auth.signInWithCredential(
+        auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+      );
+      await this.setRedirect(true);
+      return await this.updateUserData(user);
+    })
+    .catch((e) => console.log('Error' + e));
+  }
+
+  async googleLogin() {
+    try {
+      let user;
+
+      if (this.platform.is('cordova')) {
         user = await this.nativeGoogleLogin();
-      }
-      else{
+      } else {
         await this.setRedirect(true);
         const provider = new auth.GoogleAuthProvider();
         user = await this.afAuth.auth.signInWithRedirect(provider);
       }
 
       return await this.updateUserData(user);
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   }
-  
-  async isRedirect(){
+
+  async isRedirect() {
     return await this.storage.get('authRedirect');
   }
 
-  uid(){
+  uid() {
     return this.user$
       .pipe(
         take(1),
@@ -78,12 +90,11 @@ export class AuthService {
       .toPromise();
   }
 
-  setRedirect(value){
+  setRedirect(value) {
     this.storage.set('authRedirect', value);
   }
 
-  private async nativeGoogleLogin(): Promise<any>{
-    debugger;
+  private async nativeGoogleLogin(): Promise<any> {
     const gplusUser = await this.googlePlus.login({
       webClientId: '727936331391-n6905q9s5sg5n12dp3ui3cknuqgngevh.apps.googleusercontent.com',
       offline: true,
@@ -95,8 +106,8 @@ export class AuthService {
     );
   }
 
-  private async handleRedirect(){
-    if((await this.isRedirect()) !== true){
+  private async handleRedirect() {
+    if ((await this.isRedirect()) !== true) {
       return null;
     }
 
@@ -105,7 +116,7 @@ export class AuthService {
 
     const result = await this.afAuth.auth.getRedirectResult();
 
-    if(result.user){
+    if (result.user) {
       await this.updateUserData(result.user);
     }
 
@@ -116,7 +127,7 @@ export class AuthService {
     return result;
   }
 
-  private updateUserData(user){
+  private updateUserData(user) {
     const path = `users/${user.uid}`;
 
     const data = {
@@ -127,6 +138,6 @@ export class AuthService {
 
     };
 
-    return this.db.updateAt(path, data)
+    return this.db.updateAt(path, data);
   }
 }
