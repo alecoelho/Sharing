@@ -14,6 +14,7 @@ import { DbService } from './db.service';
 
 import { AppUser } from '../models/app-user';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -47,16 +48,26 @@ export class AuthService {
     return await this.afAuth.auth.signOut();
   }
 
-  async facebookLogin() {
+  facebookLogin() {
     this.fb.login(['public_profile', 'email'])
-    .then((res: FacebookLoginResponse) => async() => {
-      const user = await this.afAuth.auth.signInWithCredential(
-        auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
-      );
-      await this.setRedirect(true);
-      return await this.updateUserData(user);
-    })
-    .catch((e) => console.log('Error' + e));
+    .then((res: FacebookLoginResponse) => {
+      if (res.status === 'connected') {
+        // Get user ID and Token
+        const fb_id = res.authResponse.userID;
+        const fb_token = res.authResponse.accessToken;
+
+        console.log('logou:' + fb_id + ' - ' + fb_token);
+
+        // Get user infos from the API
+        this.fb.api('/me?fields=name,email', []).then((user) => {
+          console.log('user:' + user.name + ' - ' + user.email);
+          this.setRedirect(true);
+          const user2 = this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+          console.log('user2:' + user2);
+          return this.updateUserData(user2);
+        });
+    }})
+    .catch((e) => console.log('error:' + e));
   }
 
   async googleLogin() {
