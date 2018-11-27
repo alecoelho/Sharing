@@ -1,4 +1,21 @@
-<ion-tabs>
+<ion-header>
+  <ion-toolbar>  
+    <ion-menu-button *ngIf="authService.user$ | async as user; else login">
+    </ion-menu-button> 
+    <ng-template #login>
+      <ion-buttons slot="end">
+        <span style="margin-right: 5px">Sign In</span>
+        <ion-button (click)="signInWithGoogle()">
+          <ion-icon name="logo-google"></ion-icon>
+        </ion-button>
+        <ion-button (click)="signInWithFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>             
+        </ion-button>
+      </ion-buttons>
+    </ng-template>       
+  </ion-toolbar>
+  </ion-header>
+<ion-tabs tabbarPlacement=“top” primary>
   <ion-tab label="Home" icon="home" href="/tabs/(home:home)">
     <ion-router-outlet name="home"></ion-router-outlet>
   </ion-tab>

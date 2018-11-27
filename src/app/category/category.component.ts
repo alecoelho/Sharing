@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../models/Category';
+import { Category } from '../shared/models/category';
 import { FormGroup , Validators, FormBuilder } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 
