@@ -1,22 +1,12 @@
 <ion-header>
-  <ion-toolbar>  
-    <ion-menu-button *ngIf="authService.user$ | async as user; else login">
-    </ion-menu-button> 
-    <ng-template #login>
-      <ion-buttons slot="end">
-        <span style="margin-right: 5px">Sign In</span>
-        <ion-button (click)="signInWithGoogle()">
-        <ion-icon src="assets/icon/google_logo.svg"></ion-icon>
-        </ion-button>
-        <ion-button (click)="signInWithFacebook()">
-        <ion-icon name="logo-facebook"></ion-icon>             
-        </ion-button>
-        </ion-buttons>
-    </ng-template>     
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+        Home
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
-    <ion-searchbar></ion-searchbar>
+        <ion-searchbar animated="true"></ion-searchbar>
     <ion-card>
         <ion-img src="/assets/images/catgories/books.jpg"></ion-img>
         <ion-card-header>

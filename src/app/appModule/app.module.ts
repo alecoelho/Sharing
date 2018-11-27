@@ -6,7 +6,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule} from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { Firebase } from '@ionic-native/firebase/ngx';
 import { AngularFireModule } from '@angular/fire';
@@ -18,16 +20,18 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppMenuComponent } from './components/app-menu.component';
 
-import { AuthService } from './services/auth.service';
-import { DbService } from './services/db.service';
+import { AuthService } from '../shared/services/auth.service';
+import { DbService } from '../shared/services/db.service';
 
-import { environment } from '../environments/environment';
-
-import { Facebook } from '@ionic-native/facebook/ngx';
+import { environment } from '../../environments/environment';
 
 @NgModule({
-   declarations: [AppComponent],
+   declarations: [
+      AppComponent,
+      AppMenuComponent
+   ],
    entryComponents: [],
    imports: [
       BrowserModule,
