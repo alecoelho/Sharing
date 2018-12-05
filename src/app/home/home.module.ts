@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+import { CategoryService } from './services/category.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +20,9 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [
+    CategoryService
+  ]
 })
 export class HomePageModule {}
