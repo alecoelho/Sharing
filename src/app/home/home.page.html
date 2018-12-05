@@ -6,32 +6,14 @@
     </ion-toolbar>
 </ion-header>
 <ion-content padding>
-        <ion-searchbar animated="true"></ion-searchbar>
-    <ion-card>
-        <ion-img src="/assets/images/catgories/books.jpg"></ion-img>
+    <ion-searchbar animated="true"></ion-searchbar>
+    <ion-card *ngFor="let cat of categories$ | async">
+        <ion-img [src]="cat.photoURL"></ion-img>
         <ion-card-header>
-            <ion-card-title>Books</ion-card-title>
+            <ion-card-title>{{ cat.name }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>All types of books</p>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-img src="/assets/images/catgories/tools.jpeg"></ion-img>
-        <ion-card-header>
-            <ion-card-title>Tools</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <p>The content for this card</p>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-img src="/assets/images/catgories/home_outdoor.jpg"></ion-img>
-        <ion-card-header>
-            <ion-card-title>Home - Outdoor</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <p>The content for this card</p>
+            <p>{{ cat.description }}</p>
         </ion-card-content>
     </ion-card>
 </ion-content>

@@ -8,7 +8,7 @@ import { switchMap, take, map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { Platform, LoadingController } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { DbService } from './db.service';
 
