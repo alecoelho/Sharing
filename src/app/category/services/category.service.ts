@@ -8,7 +8,12 @@ import { DbService } from '../../shared/services/db.service';
 
       constructor(private db: DbService){}
 
-      getAll() {
-        return this.db.collection$("categories", ref => ref.orderBy("name", "asc"));
+      get(cat: string) {
+        return this.db.collection$("categories", ref =>
+        ref 
+          .where("parent", "==", cat)
+          .orderBy("name", "asc")
+          .limit(10)
+        )
       }
   }

@@ -11,6 +11,7 @@ export class TabsPage {
   constructor(private authService: AuthService) {}
 
   signInWithGoogle(){
+    this.authService.singOut();
     this.authService.googleLogin();
   }
 

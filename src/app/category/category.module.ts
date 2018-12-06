@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HomePage } from './home.page';
+import { CategoryPage } from './category.page';
 
 import { CategoryService } from './services/category.service';
 
@@ -16,13 +16,14 @@ import { CategoryService } from './services/category.service';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: CategoryPage
       }
     ])
   ],
-  declarations: [HomePage],
+  exports: [CategoryPage],
+  declarations: [CategoryPage],
   providers: [
     CategoryService
   ]
 })
-export class HomePageModule {}
+export class CategoryPageModule {}
